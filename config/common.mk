@@ -71,17 +71,15 @@ PRODUCT_PACKAGES += \
     Development \
     SpareParts \
     Superuser \
-    su
+    su \
+    AudioFX \
+    lovejoysVolume
 
 # Optional packages
 PRODUCT_PACKAGES += \
     Basic \
     LiveWallpapersPicker \
     PhaseBeam
-
-# AudioFX
-PRODUCT_PACKAGES += \
-    AudioFX
 
 # Extra Optional packages
 PRODUCT_PACKAGES += \
@@ -114,6 +112,14 @@ endif
 
 # easy way to extend to add more packages
 -include vendor/extra/product.mk
+
+# AudioFX
+PRODUCT_COPY_FILES += \
+ 	vendor/slim/prebuilt/common/etc/AudioFX/AudioFX.apk:system/app/AudioFX/AudioFX.apk
+
+# lovejoysVolume
+PRODUCT_COPY_FILES += \
+ 	vendor/slim/prebuilt/common/etc/lovejoysVolume/lovejoysVolume.apk:system/app/lovejoysVolume/lovejoysVolume.apk
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/slim/overlay/common
 
@@ -158,9 +164,9 @@ ifdef SLIM_BUILD_EXTRA
     SLIM_POSTFIX := -$(SLIM_BUILD_EXTRA)
 endif
 ifndef SLIM_BUILD_TYPE
-    SLIM_BUILD_TYPE := UNOFFICIAL
+    SLIM_BUILD_TYPE := Twisted
     PLATFORM_VERSION_CODENAME := UNOFFICIAL
-    SLIM_POSTFIX := -$(shell date +"%Y%m%d-%H%M")
+    SLIM_POSTFIX := -$(shell date +"%Y%m%d")
 endif
 
 # SlimIRC
